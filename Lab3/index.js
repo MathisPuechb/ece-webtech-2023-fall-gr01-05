@@ -10,7 +10,7 @@ const content = '<!DOCTYPE html>' +
 '        <title>ECE lb2</title>' +
 '    </head>' + 
 '    <body>' +
-'       <p>Hello you!</p>' +
+'       <p>Hello there!</p>' +
 '    </body>' +
 '</html>'
 
