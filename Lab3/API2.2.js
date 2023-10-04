@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-let articles = []; // Assuming this is where you store your articles
+let articles = []; 
 
 // Route to list all articles
 app.get('/articles', (req, res) => {
@@ -10,7 +10,7 @@ app.get('/articles', (req, res) => {
 
 // Route to add a new article
 app.post('/articles', (req, res) => {
-  const newArticle = req.body; // Assuming you're sending the article in the request body
+  const newArticle = req.body; 
   articles.push(newArticle);
   res.json({ message: 'Article added successfully', article: newArticle });
 });
