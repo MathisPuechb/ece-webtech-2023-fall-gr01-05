@@ -28,7 +28,6 @@ app.post('/articles', (req, res) => {
   };
  
   articles.articles.push(nvarticle);
-  console.log('Nouvel article ajouté :', newArticle);
   res.status(201).json(nvarticle);
 
   
