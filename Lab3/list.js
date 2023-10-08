@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const port = 8080;
 
-const articles = require('./articles'); // Importez les données depuis articles.js
+const articles = require('./articles'); 
 
 app.get('/', (req, res) => {
-  res.json(articles); // Afficher les articles à la racine
+  res.json(articles); 
 });
 
 app.listen(port, () => {
