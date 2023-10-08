@@ -6,7 +6,7 @@ const articles = [
     date: '04/10/2022',
     author: 'Liz Gringer'
   },
-  // ... autres articles
+  // 
 ];
 
 const comments = [
@@ -17,7 +17,7 @@ const comments = [
     articleId: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
     author: 'Bob McLaren'
   },
-  // ... autres commentaires
+  // 
 ];
 
 module.exports = {
