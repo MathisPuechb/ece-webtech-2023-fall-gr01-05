@@ -1,0 +1,9 @@
+we use this code in postman to post a new article on our app: 
+
+{
+    "id": "1235646",
+    "title": "How to push an article",
+    "content": "Good content",
+    "date":"08/10/2035",
+    "author":"Us"
+}
