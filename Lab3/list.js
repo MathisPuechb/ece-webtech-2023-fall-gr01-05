@@ -1,15 +1,19 @@
 const express = require('express');
 const app = express();
-const bodyParser =  require('body-parser');
 const port = 8080;
+const searchId = '123456789'
+const articles = require('./articles');
+const article = articles.articles.find( article => article.id === searchId)
+// returns an element of an array or `undefined`
 
-const articles = require('./articles'); 
 
-app.use(bodyParser.urlencoded({
-  extended: false}))
-  
+app.get('/id', (req,res) => {
+  res.json(article);
+})
+
+
 app.get('/', (req, res) => {
-  res.json(articles); 
+  res.json(articles);
 });
 
 
@@ -19,12 +23,12 @@ app.listen(port, () => {
 
 
 app.post('/articles', (req, res) => {
-  
-  const { title, content, date, author } = req.body;
-  
+ 
+  const { id, title, content, date, author } = req.body;
+ 
 
   const nvarticle = {
-    id: '1235646', 
+    id: '123564667',
     title: 'How to push an article',
     content: 'Good content',
     date:'08/10/2035',
@@ -34,5 +38,5 @@ app.post('/articles', (req, res) => {
   articles.articles.push(nvarticle);
   res.status(201).json(nvarticle);
 
-  
+ 
 });
