@@ -6,6 +6,13 @@ const articles = [
     date: '04/10/2022',
     author: 'Liz Gringer'
   },
+  {
+    id: '01234',
+    title: 'article 1',
+    content: 'Content of the article.',
+    date: '04/10/2023',
+    author: 'Nicolas Bouissou'
+  },
   // 
 ];
 
@@ -16,6 +23,13 @@ const comments = [
     content: 'Content of the comment.',
     articleId: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
     author: 'Bob McLaren'
+  },
+  {
+    id: '9876',
+    timestamp: 2987371938,
+    content: 'Content of the comment.',
+    articleId: '01234',
+    author: 'Bob McLaren george'
   },
   // 
 ];
