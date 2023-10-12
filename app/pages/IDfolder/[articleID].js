@@ -1,22 +1,14 @@
-import React from "react"
-import Layout from "../../components/Layout"
-import articles from "../articlesList"
-import { useRouter } from 'next/router'
+import React from "react";
+import Layout from "../../components/Layout";
+import articles from "../articlesList";
+import { useRouter } from 'next/router';
 
-function Pages ({title, component, articles}) {
+function Article ({ title, author, date }) {
   return (
     <div>
-      <p>{title}</p>
-      <p>{component}</p>
-      <ul>
-        {articles.map(article => (
-          <li key={article.id}>
-            <p>Title: {article.title}</p>
-            <p>Author: {article.author}</p>
-            <p>Date: {article.date}</p>
-          </li>
-        ))}
-      </ul>
+      <p>Title: {title}</p>
+      <p>Author: {author}</p>
+      <p>Date: {date}</p>
     </div>
   );
 }
@@ -28,12 +20,16 @@ export default function ArticleID() {
 
   const article = articles.find(article => article.id === articleID);
 
+  if (!article) {
+    return <div>Article not found</div>;
+  }
+
   return (
     <Layout>
-      <Pages 
-        title="Article Page" 
-        component="Desired Article" 
-        articles={[article]}
+      <Article 
+        title={article.title}
+        author={article.author}
+        date={article.date}
       />
     </Layout>
   );
