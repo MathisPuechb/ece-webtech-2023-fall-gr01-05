@@ -13,6 +13,7 @@ function Pages({ title, component, articles }) {
             <p className="wt-title">Title: {article.title}</p>
             <p>Author: {article.author}</p>
             <p>Date: {article.date}</p>
+            <p>Content: {article.content}</p>
           </li>
         ))}
       </ul>
