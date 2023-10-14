@@ -10,7 +10,7 @@ function Pages({ title, component, articles }) {
       <ul>
         {articles.map((article) => (
           <li key={article.id}>
-            <p className="italic">Title: {article.title}</p>
+            <p className="wt-title">Title: {article.title}</p>
             <p>Author: {article.author}</p>
             <p>Date: {article.date}</p>
           </li>

@@ -16,6 +16,10 @@
   }
 }
 
+.wt-title {
+  @apply text-3xl font-bold underline mb-10;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
