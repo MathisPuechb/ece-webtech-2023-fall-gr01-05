@@ -1,4 +1,10 @@
 /** @type {import('tailwindcss').Config} */
+
+const fontInter = require('tailwindcss-font-inter');
+const typography = require('@tailwindcss/typography');
+const forms = require('@tailwindcss/forms');
+
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -14,5 +20,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [ fontInter(),
+    typography,
+    forms,],
 }

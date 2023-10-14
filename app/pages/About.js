@@ -1,27 +1,19 @@
-import React from "react"
-import Layout from "../components/Layout"
+import React from "react";
+import Layout from "../components/Layout";
 
-function Pages ({title, component}){
-
+function Pages({ title, component }) {
   return (
-    <div>
-      <p>
-        {title}
-      </p>
-      <p>
-        {component}
-      </p>
-
+    <div className="bg-gray-100 p-4">
+      <p className="text-2xl font-bold">{title}</p>
+      <p className="text-lg">{component}</p>
     </div>
   );
 }
 
-
-export default function homePage (){
-return (
-  <Layout>
-    {}
-    < Pages title= "about page" component="about our cats" /> 
-  </Layout>
-);
+export default function HomePage() {
+  return (
+    <Layout>
+      <Pages title="About Page" component="About our cats" />
+    </Layout>
+  );
 }
