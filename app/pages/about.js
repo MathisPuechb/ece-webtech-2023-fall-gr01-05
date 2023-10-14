@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 function Pages({ title, component }) {
   return (
     <div className="bg-gray-100 p-4">
-      <p className="text-2xl font-bold">{title}</p>
+      <p className="wt-title">{title}</p>
       <p className="text-lg">{component}</p>
     </div>
   );
