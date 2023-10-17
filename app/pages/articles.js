@@ -1,6 +1,7 @@
 import React from "react";
+import Link from "next/link";
 import Layout from "../components/Layout";
-import articles from "./articlesList";
+import articles from "../lib/articlesList";
 
 function Pages({ title, component, articles }) {
   return (
@@ -10,7 +11,9 @@ function Pages({ title, component, articles }) {
       <ul>
         {articles.map((article) => (
           <li key={article.id}>
-            <p className="wt-title">Title: {article.title}</p>
+            <p className="wt-title">
+              <Link href={`/articles/${article.id}`}>Title: {article.title}</Link>
+              </p>
             <p>Author: {article.author}</p>
             <p>Date: {article.date}</p>
             <p>Content: {article.content}</p>
