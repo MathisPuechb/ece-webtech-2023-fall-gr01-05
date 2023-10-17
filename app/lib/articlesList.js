@@ -23,4 +23,4 @@ const articles = [
     // 
   ];
 
-  module.exports = articles;
+module.exports = articles;
