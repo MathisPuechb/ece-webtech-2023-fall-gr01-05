@@ -15,7 +15,7 @@ const articles = [
     },
     {
         id: '5678B',
-        title: 'article 2',
+        title: 'Article 2',
         content: 'chat gras',
         date: '02/10/2002',
         author: 'mathis.P'
