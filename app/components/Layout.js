@@ -7,10 +7,12 @@ import Nav from './Nav'
 export default function Layout({children}) {
     return (
       <div>
-      <Header/>
-        {children}
-      <Nav/>
-      <Footer/>
+        <Header/>
+        <Nav/>
+        <div className="min-h-screen container mx-auto">
+          {children}
+        </div>
+        <Footer/>
       </div>
     );
   }
