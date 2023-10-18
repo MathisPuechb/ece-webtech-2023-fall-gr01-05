@@ -1,33 +1,37 @@
-import React from "react";
-import Link from "next/link";
-import Layout from "../components/Layout";
-import articles from "../lib/articlesList";
+import React from 'react';
+import Link from 'next/link';
+import Layout from '../components/Layout';
 
-function Pages({ title, component, articles }) {
+export default function ArticlesPage({ articles }) {
   return (
-    <div>
-      <p>{title}</p>
-      <p>{component}</p>
-      <ul>
-        {articles.map((article) => (
-          <li key={article.id}>
-            <p className="wt-title">
-              <Link href={`/articles/${article.id}`}>Title: {article.title}</Link>
+    <Layout>
+      <div>
+        <h1>Articles</h1>
+        <p>List of Our Articles</p>
+        <ul>
+          {articles.map((article) => (
+            <li key={article.id}>
+              <p className="wt-title">
+                <Link href={`/articles/${article.id}`}>Title: {article.title}</Link>
               </p>
-            <p>Author: {article.author}</p>
-            <p>Date: {article.date}</p>
-            <p>Content: {article.content}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+              <p>Author: {article.author}</p>
+              <p>Date: {article.date}</p>
+              <p>Content: {article.content}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Layout>
   );
 }
 
-export default function homePage() {
-  return (
-    <Layout>
-      <Pages title="Articles Page" component="List of Our Articles" articles={articles} />
-    </Layout>
-  );
+export async function getStaticProps() {
+  
+  const articles = require('../lib/articlesList'); 
+
+  return {
+    props: {
+      articles,
+    },
+  };
 }
