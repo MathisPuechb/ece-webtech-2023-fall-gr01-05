@@ -5,6 +5,7 @@ function Pages({ title, component }) {
     <div className="bg-gray-100 p-4">
       <p className="wt-title">{title}</p>
       <p className="text-lg">{component}</p>
+
       <div className="mt-4">
         <p className="text-lg">Phone: +33 6 45 98 52 65</p>
         <p className="text-lg">Address: Desert Island</p>
