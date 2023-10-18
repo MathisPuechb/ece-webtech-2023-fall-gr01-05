@@ -1,24 +1,37 @@
-import React from "react";
-import Layout from "../components/Layout";
-function Pages({ title, component }) {
-  return (
-    <div className="bg-gray-100 p-4">
-      <p className="wt-title">{title}</p>
-      <p className="text-lg">{component}</p>
+import React from 'react';
+import Link from 'next/link';
+import Layout from '../components/Layout';
 
-      <div className="mt-4">
-        <p className="text-lg">Phone: +33 6 45 98 52 65</p>
-        <p className="text-lg">Address: Desert Island</p>
-        <p className="text-lg">Email: <a href="mailto:eatcat@miawmiaw.com">eatcat@miawmiaw.com</a></p>
+export default function ArticlesPage({ articles }) {
+  return (
+    <Layout>
+      <div>
+        <h1>Articles</h1>
+        <p>List of Our Articles</p>
+        <ul>
+          {articles.map((article) => (
+            <li key={article.id}>
+              <p className="wt-title">
+                <Link href={`/articles/${article.id}`}>Title: {article.title}</Link>
+              </p>
+              <p>Author: {article.author}</p>
+              <p>Date: {article.date}</p>
+              <p>Content: {article.content}</p>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </Layout>
   );
 }
 
-export default function HomePage() {
-  return (
-    <Layout>
-      <Pages title="Contact Us !" component="------------------" />
-    </Layout>
-  );
+export async function getStaticProps() {
+ 
+  const articles = require('../lib/articlesList');
+
+  return {
+    props: {
+      articles,
+    },
+  };
 }
