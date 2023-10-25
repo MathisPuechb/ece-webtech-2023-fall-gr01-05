@@ -8,7 +8,7 @@ export default function ArticlesPage({ articles }) {
     <Layout>
       <div>
         <h1>Articles</h1>
-        <p>List of our Articles</p>
+
         <ul>
           {articles.map((article) => (
             <li key={article.id}>
@@ -34,4 +34,4 @@ export async function getStaticProps() {
     props: {
       articles,
     },
-  };}
+  }}

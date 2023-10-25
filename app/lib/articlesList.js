@@ -1,7 +1,7 @@
 const articles = [
     {
       id: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
-      title: 'Sandwichs',
+
       content: 'The club sandwich is a sandwich of American origin, consisting of two layers of filling separated by slices of bread, often toasted. It is normally cut into wedges, which are arranged vertically, pointing upwards, and held together by toothpicks.',
       date: '04/10/2022',
       author: 'Liz Gringer'
@@ -15,7 +15,6 @@ const articles = [
     },
     {
         id: '5678B',
-        title: 'article 2',
         content: 'chat gras',
         date: '02/10/2002',
         author: 'mathis.P'
