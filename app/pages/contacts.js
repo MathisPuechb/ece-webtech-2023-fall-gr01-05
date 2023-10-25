@@ -6,32 +6,10 @@ export default function ArticlesPage({ articles }) {
   return (
     <Layout>
       <div>
-        <h1>Articles</h1>
-        <p>List of Our Articles</p>
-        <ul>
-          {articles.map((article) => (
-            <li key={article.id}>
-              <p className="wt-title">
-                <Link href={`/articles/${article.id}`}>Title: {article.title}</Link>
-              </p>
-              <p>Author: {article.author}</p>
-              <p>Date: {article.date}</p>
-              <p>Content: {article.content}</p>
-            </li>
-          ))}
-        </ul>
+        <h1>Contact Us!</h1>
+        <p>Phone: +235 564 456</p>
+        <p>Location: Desert Island</p>
       </div>
     </Layout>
   );
-}
-
-export async function getStaticProps() {
- 
-  const articles = require('../lib/articlesList');
-
-  return {
-    props: {
-      articles,
-    },
-  };
 }
