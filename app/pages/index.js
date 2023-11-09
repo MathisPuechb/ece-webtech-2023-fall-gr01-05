@@ -41,7 +41,7 @@ function LoginNative({ onLogin }) {
           onLogin(data);
           setError(null);
         } else {
-          onLogin(null); // Set user as logged out if the condition is not met
+          onLogin(null); 
           setError("Invalid username or password");
         }
       } else {
@@ -52,7 +52,7 @@ function LoginNative({ onLogin }) {
     } catch (error) {
       console.error("Error accessing profile data:", error);
       setProfile(null);
-      onLogin(null); // Set user as logged out if there's an error
+      onLogin(null); 
       setError("An error occurred during login");
     }
   };
