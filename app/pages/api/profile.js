@@ -1,10 +1,10 @@
 
 export default (req, res) => {
-  const profileData = {
+  const mathis = {
     username: 'mathis',
-    email: 'puech',
+    password: 'puech',
     size: '189'
   };
 
-  res.status(200).json(profileData);
+  res.status(200).json(mathis);
 };
