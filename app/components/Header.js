@@ -9,7 +9,6 @@ function Header() {
   const router = useRouter();
 
   useEffect(() => {
-    // Fetch the user profile when the component mounts
     fetch('/api/profile') 
       .then((response) => {
         if (response.status === 200) {
@@ -27,7 +26,6 @@ function Header() {
   }, []);
 
   const handleRedirect = () => {
-    // Redirect to the Index page
     router.push('/');
   };
 
