@@ -19,7 +19,7 @@ function LoginNative() {
         fetch(`/api/profile?username=${enteredUsername}&password=${enteredPassword}`)
             .then(response => response.json())
             .then(data => setProfile(data))
-            .catch(error => console.error('Error fetching profile data:', error));
+            .catch(error => console.error('Error access to profile data:', error));
     };
 
     const handleSizeChange = (e) => {
@@ -58,15 +58,8 @@ function LoginNative() {
                                             <p>Username: {profile.username}</p>
                                             <p>Password: {profile.password}</p>
                                             <p>Size: {profile.size}</p>
-                                            
-                                            <input
-                                                type="text"
-                                                id="editedSize"
-                                                name="editedSize"
-                                                placeholder="Enter new size"
-                                                value={editedSize}
-                                                onChange={handleSizeChange}
-                                            />
+
+                                            <input type="text" id="editedSize" name="editedSize" placeholder="Enter new size" value={editedSize} onChange={handleSizeChange} />
                                             <button type="button" onClick={handleSaveSize}>
                                                 Save Size
                                             </button>
@@ -74,7 +67,7 @@ function LoginNative() {
                                     )}
                                 </div>
                             ) : (
-                                <p>Loading profile data...</p>
+                                <p>*********************************</p>
                             )}
                         </div>
                     </form>
