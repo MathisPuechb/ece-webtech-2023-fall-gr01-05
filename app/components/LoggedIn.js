@@ -6,7 +6,7 @@ function LoggedIn({ onClickLogout }) {
 
   return (
     <div>
-      <p>Welcome, {user.username}!</p>
+      <p>Connected to, {user.username}'s account!</p>
       <button onClick={onClickLogout}>Logout</button>
     </div>
   );

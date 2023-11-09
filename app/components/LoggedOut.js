@@ -5,11 +5,11 @@ function LoggedOut({ onClickLogin }) {
   const { user } = useUser();
 
   return (
-    <div>
-      <p>Please log in</p>
-      <button onClick={onClickLogin}>Login</button>
+    <div className="text-2xl text-black font-bold">
+      <center><p>Please log in</p></center>
     </div>
   );
 }
 
 export default LoggedOut;
+//<button onClick={onClickLogin}>Login</button>

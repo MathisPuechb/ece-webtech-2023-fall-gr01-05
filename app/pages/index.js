@@ -78,33 +78,6 @@ function LoginNative({ onLogin }) {
             <input type="password" id="password" name="password" required />
           </div>
           <button type="submit">Login</button>
-          <div>
-            {error && <p className="text-red-500">{error}</p>}
-            <p>Entered Username: {username}</p>
-            <p>Entered Password: {password}</p>
-            <p>DATA BASE</p>
-            {profile ? (
-              <div>
-                <p>Username: {profile.username}</p>
-                <p>Password: {profile.password}</p>
-                {profile.username === username && profile.password === password && (
-                  <div>
-                    <p>Profile Data:</p>
-                    <p>Username: {profile.username}</p>
-                    <p>Password: {profile.password}</p>
-                    <p>Size: {profile.size}</p>
-
-                    <input type="text" id="editedSize" name="editedSize" placeholder="Enter new size" value={editedSize} onChange={handleSizeChange} />
-                    <button type="button" onClick={handleSaveSize}>
-                      Save Size
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <p>*********************************</p>
-            )}
-          </div>
         </form>
       </center>
     </div>
@@ -135,7 +108,7 @@ export default function HomePage() {
             user ? (
               <LoggedIn onClickLogout={onClickLogout} />
             ) : (
-              <LoggedOut onClickLogin={() => handleLogin(null)} /> // Pass null to handle the logout case
+              <LoggedOut onClickLogin={() => handleLogin(null)} /> 
             )
           }
         />
