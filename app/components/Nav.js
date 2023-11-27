@@ -25,6 +25,21 @@ export default function Nav() {
             Contacts
           </Link>
         </li>
+        <li>
+          <Link href="/use-state">
+            Use-State
+          </Link>
+        </li>
+        <li>
+          <Link href="/login-native">
+            Login-Native
+          </Link>
+        </li>
+        <li>
+          <Link href="/login-controlled">
+            Login-Controlled
+          </Link>
+        </li>
       </ul>
     </div>
   );

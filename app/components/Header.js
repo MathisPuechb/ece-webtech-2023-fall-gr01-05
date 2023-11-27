@@ -1,11 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useUser } from './UserContext';
+import { useRouter } from 'next/router';
 
-export default function Header() {
+function Header() {
+  const [profile, setProfile] = useState(null);
+  const [error, setError] = useState(null);
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch('/api/profile') 
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('Database does not respond...');
+        }
+      })
+      .then((data) => {
+        setProfile(data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  }, []);
+
+  const handleRedirect = () => {
+    router.push('/');
+  };
+
   return (
-    <header className="bg-blue-500 py-4 rounded-md">
-      <div className="text-center">
-        <h1 className="text-4xl text-white font-bold">Header: Eating Cat Company</h1>
-      </div>
-    </header>
+    <div className="bg-blue-500 py-4">
+      <h1 className="text-4xl text-white font-bold">Public Profile</h1>
+      {user ? (
+        <div className="text-4xl text-white font-bold">
+          {profile ? (
+            `${user.username}'s Account`
+          ) : (
+            'Loading profile...'
+          )}
+        </div>
+      ) : (
+        <div>
+          <button onClick={handleRedirect} className="text-2xl text-white font-bold">
+          Please log in
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
+
+export default Header;
