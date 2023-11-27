@@ -40,6 +40,11 @@ export default function Nav() {
             Login-Controlled
           </Link>
         </li>
+        <li>
+          <Link href="/admin/contacts">
+            Contacts list
+          </Link>
+        </li>
       </ul>
     </div>
   );
