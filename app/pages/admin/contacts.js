@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-//import Layout from '../components/Layout';
+import Layout from '../../components/Layout';
 
 const ContactsPage = () => {
   const supabase = useSupabaseClient();
@@ -27,7 +27,7 @@ const ContactsPage = () => {
   }, [supabase]);
 
   return (
-    //<Layout>
+    <Layout>
       <div className="mt-4">
         <h1>Contact List</h1>
         <ul>
@@ -38,7 +38,7 @@ const ContactsPage = () => {
           ))}
         </ul>
       </div>
-    //</Layout>
+    </Layout>
   );
 };
 

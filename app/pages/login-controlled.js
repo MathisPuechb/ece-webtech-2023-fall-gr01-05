@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import Layout from "../components/Layout";
 
+import { createClient } from '@supabase/supabase-js'
+import { Auth } from '@supabase/auth-ui-react'
+
+const supabase = createClient('https://idmodaabicwombmjqcyk.supabase.com', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkbW9kYWFiaWN3b21ibWpxY3lrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDAwNjM5NDksImV4cCI6MjAxNTYzOTk0OX0.utPS9Byw5B4_8WE7JmG0kRNGjF6ZJaj_OJ9FstncrHU')
+
+const App = () => <Auth supabaseClient={supabase} />
+
 function LoginNative() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
