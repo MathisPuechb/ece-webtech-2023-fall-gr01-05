@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import { useUser } from "../components/UserContext";
 import LoggedIn from "../components/LoggedIn";
 import LoggedOut from "../components/LoggedOut";
+import { useRouter } from 'next/router';
 
 function Pages({ title, component }) {
   return (
@@ -90,6 +91,7 @@ export default function HomePage() {
   const handleLogin = (userData) => {
     if (userData) {
       login(userData);
+      router.push('api/profile');
     } else {
       logout();
     }
