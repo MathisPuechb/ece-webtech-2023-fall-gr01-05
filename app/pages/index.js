@@ -88,6 +88,12 @@ function LoginNative({ onLogin }) {
 export default function HomePage() {
   const { user, login, logout } = useUser();
 
+
+  const handleGitHubLogin = () => {
+    window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=github`;
+  };
+
+
   const handleLogin = (userData) => {
     if (userData) {
       login(userData);
@@ -105,6 +111,7 @@ export default function HomePage() {
     <Layout>
       <div className="bg-gray-100 p-4">
         <Pages
+        
           title="Home Page"
           component={
             user ? (
@@ -116,6 +123,7 @@ export default function HomePage() {
         />
         {!user && <LoginNative onLogin={handleLogin} />}
       </div>
+      <button onClick={handleGitHubLogin}>Login with GitHub</button>
     </Layout>
   );
 }

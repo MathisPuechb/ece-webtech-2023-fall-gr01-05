@@ -1,31 +1,25 @@
-
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { supabase } from './supabase-config'; 
+import { supabase } from '../utils/supabase';
 
-export default function Profile() {
+const Profile = () => {
   const router = useRouter();
 
-  // Function to handle logout
   const handleLogout = async () => {
-    // Sign out the user
-    const { error } = await supabase.auth.signOut();
+    try {
+      // Déconnexion de l'utilisateur
+      const { error } = await supabase.auth.signOut();
 
-    if (!error) {
-      // Redirect to the home page after successful logout
-      router.push('/');
-    } else {
-      console.error('Error during logout:', error.message);
+      if (error) {
+        console.error('Logout Error:', error);
+      } else {
+        console.log('User logged out successfully');
+        router.push('/');
+      }
+    } catch (error) {
+      console.error('Logout Error:', error);
     }
   };
-
-  // Ensure the user is authenticated before rendering the profile page
-  useEffect(() => {
-    // Check if the user is not authenticated and redirect to the login page
-    if (!supabase.auth.user()) {
-      router.push('/login'); // Replace with your login route
-    }
-  }, []);
 
   return (
     <div>
@@ -33,4 +27,6 @@ export default function Profile() {
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
-}
+};
+
+export default Profile;
