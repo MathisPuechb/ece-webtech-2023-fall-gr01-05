@@ -1,129 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { useUser } from "../components/UserContext";
-import LoggedIn from "../components/LoggedIn";
-import LoggedOut from "../components/LoggedOut";
-import { useRouter } from 'next/router';
-
-function Pages({ title, component }) {
-  return (
-    <div className="relative flex items-center">
-      <div className="absolute top-0 right-0 w-16 h-full bg-blue-500"></div>
-      <div className="p-4 relative">
-        <p className="wt-title">{title}</p>
-        <div className="text-lg">{component}</div>
-      </div>
-    </div>
-  );
-}
-
-function LoginNative({ onLogin }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [profile, setProfile] = useState(null);
-  const [editedSize, setEditedSize] = useState("");
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const enteredUsername = formData.get("username");
-    const enteredPassword = formData.get("password");
-
-    setUsername(enteredUsername);
-    setPassword(enteredPassword);
-
-    try {
-      const response = await fetch(`/api/profile?username=${enteredUsername}&password=${enteredPassword}`);
-      if (response.ok) {
-        const data = await response.json();
-        setProfile(data);
-        if (data.username === enteredUsername && data.password === enteredPassword) {
-          onLogin(data);
-          setError(null);
-        } else {
-          onLogin(null); 
-          setError("Invalid username or password");
-        }
-      } else {
-        setProfile(null);
-        const errorData = await response.json();
-        setError(errorData.message || "Login failed");
-      }
-    } catch (error) {
-      console.error("Error accessing profile data:", error);
-      setProfile(null);
-      onLogin(null); 
-      setError("An error occurred during login");
-    }
-  };
-
-  const handleSizeChange = (e) => {
-    setEditedSize(e.target.value);
-  };
-
-  const handleSaveSize = () => {
-    setProfile((prevProfile) => ({ ...prevProfile, size: editedSize }));
-  };
-
-  return (
-    <div>
-      <center>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input type="text" id="username" name="username" required />
-          </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input type="password" id="password" name="password" required />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-      </center>
-    </div>
-  );
-}
+import supabase from "./supabase-config";
 
 export default function HomePage() {
-  const { user, login, logout } = useUser();
+  const [userInfo, setUserInfo] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const queryString = window.location.hash.substring(1);
+      const urlParams = new URLSearchParams(queryString);
+      const accessToken = urlParams.get("access_token");
+
+      if (accessToken) {
+        await getUserInfo();
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleGitHubLogin = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=github`;
-  };
-
-
-  const handleLogin = (userData) => {
-    if (userData) {
-      login(userData);
-      router.push('api/profile');
-    } else {
-      logout();
+    try {
+      window.location.href = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/authorize?provider=github`;
+      getUserInfo();
+    } catch (error) {
+      console.error("Échec de la connexion GitHub:", error.message);
     }
   };
 
-  const onClickLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    // Implement logout logic here if needed
+    // For example, clear user data from state
+    setUserInfo(null);
   };
+
+  const getUserInfo = async () => {
+  try {
+    const { data } = await supabase.from('profiles').select('*');
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('email');
+
+    // Use the state updater function to ensure the latest state
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
+      ...profile,
+    }));
+    
+    console.log("profile: ",profile);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des informations de l'utilisateur:", error.message);
+  }
+};
+
+
+const renderUserEmail = () => {
+  if (userInfo && userInfo[0] && userInfo[0].email) {
+    return <p>email de connexion: {userInfo[0].email}</p>;
+  }
+  return null;
+};
 
   return (
     <Layout>
-      <div className="bg-gray-100 p-4">
-        <Pages
-        
-          title="Home Page"
-          component={
-            user ? (
-              <LoggedIn onClickLogout={onClickLogout} />
-            ) : (
-              <LoggedOut onClickLogin={() => handleLogin(null)} /> 
-            )
-          }
-        />
-        {!user && <LoginNative onLogin={handleLogin} />}
-      </div>
-      <button onClick={handleGitHubLogin}>Login with GitHub</button>
+      {renderUserEmail()}
+      <button onClick={handleGitHubLogin}>Se connecter avec GitHub</button>
+      <button onClick={handleLogout}>Se déconnecter</button>
     </Layout>
   );
 }
