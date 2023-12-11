@@ -1,22 +1,60 @@
-import React, { createContext, useState, useContext } from 'react';
-const UserContext = createContext();
+// UserContext.js
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import supabase from '../pages/supabase-config';
 
-export const useUser = () => useContext(UserContext);
+const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    setUser(userData);
+  useEffect(() => {
+    const fetchData = async () => {
+      const queryString = window.location.hash.substring(1);
+      const urlParams = new URLSearchParams(queryString);
+      const accessToken = urlParams.get("access_token");
+
+      if (accessToken) {
+        await login();
+      }
+    };
+
+    fetchData();
+  }, []); 
+
+  const login = async () => {
+    try {
+      
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('email,id');
+      console.log("coucou2: ",profile);
+      // Utilisez la fonction de mise à jour de l'état pour garantir la dernière valeur de l'état
+      setUser((prevUserInfo) => ({
+        ...prevUserInfo,
+        ...profile,
+      }));
+    } catch (error) {
+      console.error("Erreur lors de la récupération des informations de l'utilisateur:", error.message);
+    }
   };
 
-  const logout = () => {
+  const handleLogout = async () => {
+    // Implémentez la logique de déconnexion ici si nécessaire
+    // Par exemple, effacez les données utilisateur de l'état
     setUser(null);
   };
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, handleLogout }}>
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+  return context;
 };

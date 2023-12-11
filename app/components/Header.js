@@ -1,3 +1,4 @@
+// Header.js
 import React, { useState, useEffect } from 'react';
 import { useUser } from './UserContext';
 import { useRouter } from 'next/router';
@@ -5,7 +6,7 @@ import { useRouter } from 'next/router';
 function Header() {
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState(null);
-  const { user } = useUser();
+  const { user } = useUser(); // Utilisez le contexte utilisateur
   const router = useRouter();
 
   useEffect(() => {
@@ -28,14 +29,15 @@ function Header() {
   const handleRedirect = () => {
     router.push('/');
   };
-
+console.log(" user: ",user);
   return (
     <div className="bg-blue-500 py-4">
-      <h1 className="text-4xl text-white font-bold">Public Profile</h1>
+      <h1 className="text-4xl text-white font-bold">{user ? `Welcome, ${user[0].email}!` : 'Public Profile'}</h1>
+
       {user ? (
         <div className="text-4xl text-white font-bold">
-          {profile ? (
-            `${user.username}'s Account`
+          {user? (
+            `Account id: ${user[0].id}`
           ) : (
             'Loading profile...'
           )}
@@ -43,7 +45,7 @@ function Header() {
       ) : (
         <div>
           <button onClick={handleRedirect} className="text-2xl text-white font-bold">
-          Please log in
+            Please log in
           </button>
         </div>
       )}
