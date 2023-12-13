@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
       const { data: profile } = await supabase
         .from('profiles')
         .select('email,id');
-      console.log("coucou2: ",profile);
+      
       // Utilisez la fonction de mise à jour de l'état pour garantir la dernière valeur de l'état
       setUser((prevUserInfo) => ({
         ...prevUserInfo,
@@ -41,6 +41,9 @@ export const UserProvider = ({ children }) => {
   const handleLogout = async () => {
     // Implémentez la logique de déconnexion ici si nécessaire
     // Par exemple, effacez les données utilisateur de l'état
+  console.log("logedout");
+  const { error } = await supabase.auth.signOut()
+    
     setUser(null);
   };
 

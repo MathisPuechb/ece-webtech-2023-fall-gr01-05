@@ -45,6 +45,11 @@ export default function Nav() {
             Contacts list
           </Link>
         </li>
+        <li>
+          <Link href="/articleCreationPage">
+            write your article
+          </Link>
+        </li>
       </ul>
     </div>
   );
