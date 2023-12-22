@@ -24,14 +24,16 @@ export const UserProvider = ({ children }) => {
   const login = async () => {
     try {
       
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('email,id');
+      const {
+        data: { user},
+      } = await supabase.auth.getUser()
+      let metadata = user.user_metadata
+      console.log(metadata);
       
       // Utilisez la fonction de mise à jour de l'état pour garantir la dernière valeur de l'état
       setUser((prevUserInfo) => ({
         ...prevUserInfo,
-        ...profile,
+        ...user,
       }));
     } catch (error) {
       console.error("Erreur lors de la récupération des informations de l'utilisateur:", error.message);
