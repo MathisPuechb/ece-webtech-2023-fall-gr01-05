@@ -29,10 +29,10 @@ const PostForm = ({ onPostSubmit, onCancel }) => {
     try {
       const { data, error } = await supabase.from("posts").insert([
         {
-          id_article,
+          id_article: Math.floor(Math.random() * 50001),
           title,
           content,
-          id: user[0].id,
+          ID: user.id,
           created_at: new Date(),
         },
       ]);
