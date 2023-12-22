@@ -31,8 +31,8 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/login-native">
-            Login-Native
+          <Link href="/articlesDisplayingPage">
+            All articles
           </Link>
         </li>
         <li>

@@ -1,11 +1,12 @@
 // PostForm.js
 import React, { useState } from "react";
-import { supabase } from "./supabase-config";
 import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { useUser } from '../components/UserContext';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 
 const PostForm = ({ onPostSubmit, onCancel }) => {
+  const supabase = useSupabaseClient();
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -23,14 +24,15 @@ const PostForm = ({ onPostSubmit, onCancel }) => {
       alert("Title and content are required");
       return;
     }
-
+    const id_article=7;
     // Save post to the database
     try {
       const { data, error } = await supabase.from("posts").insert([
         {
+          id_article,
           title,
           content,
-          user_id: user.id,
+          id: user[0].id,
           created_at: new Date(),
         },
       ]);
