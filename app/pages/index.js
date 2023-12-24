@@ -32,16 +32,16 @@ export default function HomePage() {
     }
   };
 
-  const renderUserEmail = () => {
-    if (user && user.email) {
-      return <p>email de connexion: {user.email}</p>;
+  const renderUserID = () => {
+    if (user && user.id) {
+      return <p>profile ID: {user.id}</p>;
     }
     return null;
   };
 
   return (
     <Layout>
-      {renderUserEmail()}
+      {renderUserID()}
       <button onClick={handleGitHubLogin}>Se connecter avec GitHub</button>
       <button onClick={handleLogout}>Se déconnecter</button>
     </Layout>

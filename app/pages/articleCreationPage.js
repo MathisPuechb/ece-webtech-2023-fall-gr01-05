@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 import { useUser } from '../components/UserContext';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { v4 as uuidv4 } from 'uuid';
 
 const PostForm = ({ onPostSubmit, onCancel }) => {
   const supabase = useSupabaseClient();
@@ -18,13 +19,18 @@ const PostForm = ({ onPostSubmit, onCancel }) => {
       router.push("/"); 
       return;
     }
+    
+    const generateRandomId = () => {
+      return uuidv4(); // Generate a random UUID
+    };
 
     // Validate form fields
     if (!title.trim() || !content.trim()) {
       alert("Title and content are required");
       return;
     }
-    const id_article=7;
+    const id_article = generateRandomId();
+    console.log("id-article: ",id_article);
     // Save post to the database
     try {
       const { data, error } = await supabase.from("posts").insert([
@@ -32,8 +38,8 @@ const PostForm = ({ onPostSubmit, onCancel }) => {
           id_article,
           title,
           content,
-          id: user[0].id,
-          created_at: new Date(),
+          ID: user.id,
+          created_at: new Date(), 
         },
       ]);
 

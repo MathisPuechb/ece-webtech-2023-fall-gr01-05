@@ -32,12 +32,12 @@ function Header() {
 console.log(" user: ",user);
   return (
     <div className="bg-blue-500 py-4">
-      <h1 className="text-4xl text-white font-bold">{user ? `Welcome, ${user.user_metadata.email}!` : 'Public Profile'}</h1>
+      <h1 className="text-4xl text-white font-bold">{user ? `Welcome, ${user.user_metadata.name}!` : 'Public Profile'}</h1>
 
       {user ? (
         <div className="text-4xl text-white font-bold">
           {user? (
-            `Account id: ${user.user_metadata.id}`
+            `email: ${user.user_metadata.email}`
           ) : (
             'Loading profile...'
           )}
