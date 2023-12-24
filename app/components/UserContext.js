@@ -28,7 +28,6 @@ export const UserProvider = ({ children }) => {
         data: { user},
       } = await supabase.auth.getUser()
       let metadata = user.user_metadata
-      console.log(metadata);
       
       // Utilisez la fonction de mise à jour de l'état pour garantir la dernière valeur de l'état
       setUser((prevUserInfo) => ({

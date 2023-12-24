@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Link from "next/link"; // Import Link from Next.js
 import Layout from "../components/Layout";
 import PostList from "../components/articleList";
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
@@ -6,7 +7,7 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 const PostListPage = () => {
   const [posts, setPosts] = useState([]);
   const supabase = useSupabaseClient();
-  
+
   useEffect(() => {
     // Fetch posts from the database and update state
     const fetchPosts = async () => {
@@ -37,13 +38,14 @@ const PostListPage = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong>Title</strong></td>
-              <td><strong>Content</strong></td>
-            </tr>
             {posts.map((post) => (
               <tr key={post.id_article} style={{ borderBottom: "1px solid #ddd" }}>
-                <td style={{ padding: "8px" }}>{post.title}</td>
+                {/* Use Link to wrap the title and provide the URL for the detailed view */}
+                <td style={{ padding: "8px" }}>
+                  <Link href={`/articles/${post.id_article}`}>
+                    <p>{post.title}</p>
+                  </Link>
+                </td>
                 <td style={{ padding: "8px" }}>{post.content}</td>
               </tr>
             ))}
