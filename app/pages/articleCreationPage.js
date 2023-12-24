@@ -38,8 +38,8 @@ const PostForm = ({ onPostSubmit, onCancel }) => {
           id_article,
           title,
           content,
-          ID: user.id,
-          created_at: new Date(), 
+          user_ID: user.id,
+          created_at: new Date(),
         },
       ]);
 

@@ -37,11 +37,12 @@ console.log(" user: ",user);
       {user ? (
         <div className="text-4xl text-white font-bold">
           {user? (
-            `email: ${user.user_metadata.email}`
+            `Account email: ${user.email}`
           ) : (
             'Loading profile...'
           )}
         </div>
+        
       ) : (
         <div>
           <button onClick={handleRedirect} className="text-2xl text-white font-bold">
