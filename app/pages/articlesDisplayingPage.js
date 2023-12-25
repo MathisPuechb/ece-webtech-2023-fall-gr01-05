@@ -59,7 +59,6 @@ const PostListPage = () => {
 
   const handleSaveEdit = async () => {
     try {
-      // Récupérer le post actuel que vous souhaitez mettre à jour
       const currentPost = posts.find((post) => post.id_article === editPostId);
   
       if (!currentPost) {
@@ -67,30 +66,26 @@ const PostListPage = () => {
         return;
       }
   
-      // Créer un objet avec les valeurs mises à jour
       const updatedPost = {
         id_article: currentPost.id_article,
-        title: currentPost.title, // Garder le titre inchangé
+        title: currentPost.title, 
         content: editContent,
-        user_ID: currentPost.user_ID, // Garder l'ID de l'utilisateur inchangé
-        created_at: currentPost.created_at, // Garder la date de création inchangée
+        user_ID: currentPost.user_ID, 
+        created_at: currentPost.created_at, 
       };
   
-      // Utiliser la fonction upsert pour mettre à jour le post dans la base de données
       const { error } = await supabase.from("posts").upsert([updatedPost]);
   
       if (error) {
         throw error;
       }
   
-      // Mettre à jour l'état local des posts avec les nouvelles données
       const updatedPosts = posts.map((post) =>
         post.id_article === editPostId ? { ...post, content: editContent } : post
       );
   
       setPosts(updatedPosts);
   
-      // Réinitialiser l'état de l'édition
       setEditPostId(null);
       setEditContent("");
     } catch (error) {
