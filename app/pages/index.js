@@ -1,10 +1,7 @@
-// HomePage.js
-
 import React, { useEffect, useState } from "react";
 import { useUser } from '../components/UserContext';
 import Layout from "../components/Layout";
 import supabase from "./supabase-config";
-
 
 export default function HomePage() {
   const { user, login, handleLogout } = useUser();
@@ -17,12 +14,12 @@ export default function HomePage() {
       const accessToken = urlParams.get("access_token");
 
       if (accessToken) {
-        await login(); // Utilisez la fonction login du contexte utilisateur
+        await login();
       }
     };
 
     fetchData();
-  }, [login]); 
+  }, [login]);
 
   const handleGitHubLogin = () => {
     try {
@@ -32,18 +29,13 @@ export default function HomePage() {
     }
   };
 
-  const renderUserID = () => {
-    if (user && user.id) {
-      return <p>profile ID: {user.id}</p>;
-    }
-    return null;
-  };
-
   return (
     <Layout>
-      {renderUserID()}
-      <button onClick={handleGitHubLogin}>Se connecter avec GitHub</button>
-      <button onClick={handleLogout}>Se déconnecter</button>
+      <div className="flex flex-col items-center justify-center h-screen">
+       
+        <button onClick={handleGitHubLogin} className="my-4">CONNECT WITH GitHub</button>
+        <button onClick={handleLogout} className="my-4">SIGN OUT</button>
+      </div>
     </Layout>
   );
 }

@@ -66,31 +66,43 @@ function ContactPage() {
         <label>
             Id:
             <input type="text" name="id" value={newContact.id} onChange={handleInputChange} />
-          </label> <br />
+          </label> <br /> {' '}
           <label>
             First Name:
             <input type="text" name="firstname" value={newContact.firstname} onChange={handleInputChange} />
           </label>
-          <br />
+          <br /> {' '}
           <label>
             Last Name:
             <input type="text" name="lastname" value={newContact.lastname} onChange={handleInputChange} />
           </label>
-          <br />
+          <br /> {' '}
           <label>
             Email:
             <input type="text" name="email" value={newContact.email} onChange={handleInputChange} />
           </label>
-          <br />
+          <br /> {' '}
           <label>
             Message:
             <textarea name="message" value={newContact.message} onChange={handleInputChange} />
           </label>
-
-          <br />
-          <button type="submit">Add Contact</button>
+          {' '}
+          <br /> {' '}
+          <button className="btn-blue" type="submit">Send</button>
         </form>
       </div>
+
+      <style jsx>{`
+        .btn-blue {
+          background-color: #3490dc;
+          color: #fff;
+        }
+
+        .btn-red {
+          background-color: #e53e3e;
+          color: #fff;
+        }
+      `}</style>
     </Layout>
   );
 }

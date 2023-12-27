@@ -7,47 +7,31 @@ export default function Nav() {
       <ul className="flex space-x-4">
         <li>
           <Link href="/">
-            Index
+            HOME
           </Link>
         </li>
-        <li>
-          <Link href="/articles">
-            Articles
-          </Link>
-        </li>
+        
         <li>
           <Link href="/about">
-            About
+            ABOUT US
           </Link>
         </li>
         <li>
           <Link href="/contacts">
-            Contacts
+            CONTACT US
           </Link>
         </li>
-        <li>
-          <Link href="/use-state">
-            Use-State
-          </Link>
-        </li>
+        
         <li>
           <Link href="/articlesDisplayingPage">
-            All articles
+            ARTICLE BROWSER
           </Link>
         </li>
-        <li>
-          <Link href="/login-controlled">
-            Login-Controlled
-          </Link>
-        </li>
-        <li>
-          <Link href="/admin/contacts">
-            Contacts list
-          </Link>
-        </li>
+        
+        
         <li>
           <Link href="/articleCreationPage">
-            write your article
+            WRITE YOUR ARTICLE
           </Link>
         </li>
       </ul>
