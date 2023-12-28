@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import Link from 'next/link'; // Import the Link component
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from "next/router";
 
@@ -120,7 +121,12 @@ const PostListPage = () => {
           <tbody>
             {posts.map((post, index) => (
               <tr key={post.id_article} style={{ borderBottom: "1px solid #ddd", background: index % 2 === 0 ? "#f9f9f9" : "transparent" }}>
-                <td style={tableCellStyle}>{post.title}</td>
+                <td style={tableCellStyle}>
+                  {/* Use the Link component with passHref */}
+                  <Link href={`/articles/${post.id_article}`} passHref>
+                    <div>{post.title}</div>
+                  </Link>
+                </td>
                 <td style={tableCellStyle}>
                   {editPostId === post.id_article ? (
                     <input

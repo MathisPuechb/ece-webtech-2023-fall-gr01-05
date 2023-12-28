@@ -1,4 +1,4 @@
-// PostDetailPage.js
+// [articleID].js
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
@@ -25,6 +25,7 @@ const PostDetailPage = () => {
         if (error) {
           console.error("Error fetching post:", error.message);
         } else {
+          console.log("coucou: ",data);
           setPost(data);
         }
       } catch (error) {
@@ -33,6 +34,7 @@ const PostDetailPage = () => {
     };
 
     const fetchComments = async () => {
+      console.log("c'est dedans");
       try {
         const { data, error } = await supabase
           .from("comments")
@@ -50,11 +52,12 @@ const PostDetailPage = () => {
     };
 
     if (articleID) {
+      console.log("ca part");
       fetchPost();
       fetchComments();
     }
   }, [articleID]);
-
+  
   return (
     <Layout>
       <div>

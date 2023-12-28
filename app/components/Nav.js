@@ -34,6 +34,11 @@ export default function Nav() {
             WRITE YOUR ARTICLE
           </Link>
         </li>
+        <li>
+          <Link href="/accountParameters">
+            ACCOUNT INFOS
+          </Link>
+        </li>
       </ul>
     </div>
   );
