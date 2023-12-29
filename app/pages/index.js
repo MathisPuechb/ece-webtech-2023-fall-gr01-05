@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from '../components/UserContext'; // custom hook for user authentication
 import Layout from "../components/Layout"; // import the default layout
-import supabase from "./supabase-config"; // Importing Supabase configuration (not shown)
+import supabase from "../../supabase/supabase-config"; // Importing Supabase configuration (not shown)
 
 // Define the HomePage functional component
 export default function HomePage() {

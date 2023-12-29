@@ -38,7 +38,7 @@ const PostForm = ({ onPostSubmit, onCancel }) => {
     
 
     // Save post to the database
-    
+   
       const { error } = await supabase.from("posts").insert([
         {
           id_article,

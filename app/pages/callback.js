@@ -1,7 +1,7 @@
 // Import necessary dependencies and hooks
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { supabase } from '../utils/supabase';
+import { supabase } from '../../supabase/supabase-config';
 
 // Define the Callback component
 const Callback = () => {

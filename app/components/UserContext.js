@@ -2,7 +2,7 @@
 
 // Import necessary dependencies and supabase configuration
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import supabase from '../pages/supabase-config';
+import supabase from '../../supabase/supabase-config';
 
 // Create a context for user information
 const UserContext = createContext();
@@ -37,9 +37,7 @@ export const UserProvider = ({ children }) => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      
-      // Extract user metadata
-      let metadata = user.user_metadata;
+      console.log("user :",user);
 
       // Set user state with the retrieved information
       setUser((prevUserInfo) => ({

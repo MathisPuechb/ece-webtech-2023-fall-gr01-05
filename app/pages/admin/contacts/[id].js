@@ -1,4 +1,4 @@
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { supabase } from '../../../../supabase/supabase-config'; 
 import { useEffect, useState } from 'react';
 
 const ContactId = ({ contact }) => {
@@ -12,7 +12,7 @@ const ContactId = ({ contact }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const supabase = useSupabaseClient();
+  
 
   try {
     const { data, error } = await supabase
